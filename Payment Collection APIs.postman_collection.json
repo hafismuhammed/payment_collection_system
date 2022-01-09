@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "685ef6bf-3620-4eb0-89e4-a697db4ff0e3",
+		"name": "Payment Collection APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get all invoices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/all-invoices",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"all-invoices"
+					]
+				}
+			},
+			"response": [
+				[
+					{
+						"invoice_number": "string",
+						"client_name": "string",
+						"client_email": "email",
+						"project_name": "project1",
+						"amount": "float",
+						"is_paid": "bool",
+						"payment_link": "string" 
+					}
+				]
+				
+			]
+		},
+		{
+			"name": "create invoice",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"client_name\": \"client1\",\r\n    \"client_email\": \"test@yopmail.com\",\r\n    \"project_name\": \"project1\",\r\n    \"amount\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/add_invoice",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"add_invoice"
+					]
+				}
+			},
+			"response": [
+				{
+					"invoice_number": "string",
+					"client_name": "string",
+					"client_email": "email",
+					"project_name": "string",
+					"amount": "float",
+					"payment_link": "string"
+				}
+				
+				
+			]
+		},
+		{
+			"name": "checkout API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://bit.ly/3qb8gAJ",
+					"protocol": "https",
+					"host": [
+						"bit",
+						"ly"
+					],
+					"path": [
+						"3qb8gAJ"
+					]
+				},
+				"description": "when we call the shortened payment link it will redirect to this API, then it will be redirected to the checkout section, only after the checking of the invoice payment status, if the invoice is already paid it shows fail status"
+			},
+			
+			"response": [
+				{
+					"message": "Invoice already paid",
+					"status": "fail"
+				}
+				
+			]
+		},
+		{
+			"name": "payment-success API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/payment-success/BE901AFCFD81",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"payment-success",
+						"BE901AFCFD81"
+					]
+				},
+				"description": "when we call Checkout API, after the successfull checkout that will redirect to this api"
+			},
+			"response": [
+				{
+					"invoice_id": "int",
+					"invoice_number": "string",
+					"client_name": "string",
+					"client_email": "email",
+					"project_name": "project1",
+					"amount": "float",
+					"message": "payment success",
+					"status": "success"
+				}
+				
+			]
+		}
+	]
+}
