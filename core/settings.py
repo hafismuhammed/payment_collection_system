@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'payment',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +134,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SITE_DOMAIN = 'http://127.0.0.1:8000'
+
+STRIPE_PUBLIC_KEY = 'pk_test_51KEot0SC6jnXyxSfuKsccbemhDqLqCgJ2YOWgz0SViuqoDZI3Os35mzugHL4IYnOuMBhencj2lD6YGkK1xDWuyuN00lnR3X5uS'
+STRIPE_SECRET_KEY = 'sk_test_51KEot0SC6jnXyxSfsfReLs5t1fSHaHXdK0Yp6mGQQeUTi8TfihFYSV1HA8De1vRTMAQ4tmbq5MDwgD3BVufY6059007uZmq2WG'
+
+BITLY_ACCESS_TOKEN = '88027f764aae377eb5a56e5d0ef5d2bdda2ce5e6'
